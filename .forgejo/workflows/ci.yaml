@@ -34,6 +34,13 @@ jobs:
             helm lint --strict charts/stalwart-jev -f "$f"
             helm template stalwart-jev charts/stalwart-jev -f "$f" > /dev/null
           done
+      # Flux installs OCI charts as <version>+<digest>, and a label value
+      # cannot hold the "+".
+      - name: Chart labels survive build metadata
+        run: |
+          helm package charts/stalwart-jev --version 0.0.0+ci --destination "$RUNNER_TEMP/meta"
+          ! helm template stalwart-jev "$RUNNER_TEMP/meta/stalwart-jev-0.0.0+ci.tgz" \
+            -f charts/stalwart-jev/ci/api-key-values.yaml | grep -E '^\s+[a-z./-]+: .*\+ci'
 
   image:
     needs: test
