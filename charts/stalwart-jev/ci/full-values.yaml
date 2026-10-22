@@ -1,0 +1,16 @@
+existingSecret: stalwart-jev
+image:
+  tag: main-0000000-0
+imagePullSecrets:
+  - name: registry
+config:
+  TYPESAFE_MODEL: jev-preview
+  CONFIDENCE_HIGH: "0.9"
+  CONFIDENCE_MEDIUM: "0.6"
+extraEnv:
+  - name: OTEL_SDK_DISABLED
+    value: "true"
+podAnnotations:
+  instrumentation.opentelemetry.io/inject-sdk: telemetry/otlp
+networkPolicy:
+  enabled: false

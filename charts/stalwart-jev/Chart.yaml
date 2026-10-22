@@ -1,0 +1,6 @@
+apiVersion: v2
+name: stalwart-jev
+description: Stalwart's LLM spam classifier answered by TypeSafe Jev
+type: application
+version: 0.0.0
+appVersion: 0.0.0

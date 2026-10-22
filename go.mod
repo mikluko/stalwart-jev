@@ -1,4 +1,4 @@
-module forge.sarak.sh/saraksh/stalwart-jev
+module github.com/mikluko/stalwart-jev
 
 go 1.27.2
 

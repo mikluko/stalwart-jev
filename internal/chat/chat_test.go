@@ -12,7 +12,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"forge.sarak.sh/saraksh/stalwart-jev/internal/jev"
+	"github.com/mikluko/stalwart-jev/internal/jev"
 )
 
 type fake struct {

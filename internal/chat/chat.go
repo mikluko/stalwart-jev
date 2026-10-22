@@ -16,7 +16,7 @@ import (
 	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/trace"
 
-	"forge.sarak.sh/saraksh/stalwart-jev/internal/jev"
+	"github.com/mikluko/stalwart-jev/internal/jev"
 )
 
 // Classifier returns the spam category of an email.
@@ -44,7 +44,7 @@ type Handler struct {
 // NewHandler returns a Handler with its instruments registered on the global
 // meter provider.
 func NewHandler(c Classifier, high, medium float64, log *slog.Logger) (*Handler, error) {
-	m := otel.Meter("forge.sarak.sh/saraksh/stalwart-jev")
+	m := otel.Meter("github.com/mikluko/stalwart-jev")
 	h := &Handler{Classifier: c, High: high, Medium: medium, Log: log}
 	var err error
 	if h.verdicts, err = m.Int64Counter("stalwart_jev.verdicts", metric.WithDescription("Messages classified, by category and confidence level")); err != nil {

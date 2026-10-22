@@ -16,9 +16,9 @@ import (
 
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 
-	"forge.sarak.sh/saraksh/stalwart-jev/internal/chat"
-	"forge.sarak.sh/saraksh/stalwart-jev/internal/jev"
-	"forge.sarak.sh/saraksh/stalwart-jev/internal/telemetry"
+	"github.com/mikluko/stalwart-jev/internal/chat"
+	"github.com/mikluko/stalwart-jev/internal/jev"
+	"github.com/mikluko/stalwart-jev/internal/telemetry"
 )
 
 func main() {

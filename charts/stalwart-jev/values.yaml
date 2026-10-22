@@ -1,0 +1,48 @@
+image:
+  repository: sarak.sh/mikluko/stalwart-jev
+  # Defaults to the chart's appVersion.
+  tag: ""
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+
+replicaCount: 1
+
+# The TypeSafe API key. Either name a Secret holding it under
+# TYPESAFE_API_KEY, or give the key here and the chart makes the Secret.
+existingSecret: ""
+apiKey: ""
+
+# Environment of the service; see the README for every variable.
+config:
+  TYPESAFE_MODEL: jev-latest
+  CONFIDENCE_HIGH: "0.8"
+  CONFIDENCE_MEDIUM: "0.5"
+
+extraEnv: []
+
+podAnnotations: {}
+podLabels: {}
+
+service:
+  port: 8080
+
+# The endpoint takes no credentials, so by default only pods matching
+# allowFrom reach it.
+networkPolicy:
+  enabled: true
+  allowFrom:
+    - podSelector:
+        matchLabels:
+          app.kubernetes.io/name: stalwart
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 32Mi
+  limits:
+    memory: 128Mi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
