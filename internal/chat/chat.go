@@ -130,7 +130,7 @@ func (h *Handler) record(ctx context.Context, v jev.Verdict, level string) {
 	h.verdicts.Add(ctx, 1, metric.WithAttributes(attrs...))
 	h.conf.Record(ctx, v.Confidence, metric.WithAttributes(attribute.String("category", v.Category)))
 	h.tokens.Add(ctx, v.InputTokens)
-	h.Log.InfoContext(ctx, "verdict", "category", v.Category, "confidence", v.Confidence, "level", level, "input_tokens", v.InputTokens)
+	h.Log.InfoContext(ctx, "verdict", "category", v.Category, "confidence", v.Confidence, "confidence_level", level, "input_tokens", v.InputTokens)
 }
 
 func (h *Handler) fail(ctx context.Context, w http.ResponseWriter, reason string, code int, err error) {
