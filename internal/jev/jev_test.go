@@ -6,7 +6,6 @@ import (
 	"errors"
 	"net/http"
 	"net/http/httptest"
-	"strings"
 	"sync/atomic"
 	"testing"
 	"time"
@@ -85,6 +84,6 @@ func TestTruncate(t *testing.T) {
 	require.Equal(t, "abc", truncate("abc", 0))
 	require.Equal(t, "abc", truncate("abc", 5))
 	require.Equal(t, "ab", truncate("abc", 2))
-	require.Equal(t, "я", truncate("яя", 3), "a rune is never split")
-	require.True(t, strings.HasPrefix("яя", truncate("яя", 1)))
+	require.Equal(t, "€", truncate("€€", 5), "a rune is never split")
+	require.Equal(t, "", truncate("€€", 2))
 }
